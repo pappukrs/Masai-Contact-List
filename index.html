@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   
+    <title>HOME PAGE</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing: border-box;
+        }
+        body{
+            font-family: sans-serif;
+            background-color:red;
+        }
+        #navBar{
+            display:flex;
+            justify-content:space-around;
+            margin-left:200px;
+            margin-right:200px;
+            margin-top:30px;
+            padding:30px;
+            background-color: teal;
+
+        }
+        #navBar>div>a{
+            font-size:30px;
+            color:white;
+          
+            
+        }
+        #navBar>div>a:hover{
+            font-size:40px;
+            color:white;
+            background-color: black;
+        }
+        a{
+            text-decoration: none;
+        }
+
+        #formStyle{
+            display:flex;
+            flex-direction: column;
+            margin-left:200px;
+            margin-right:200px;
+            margin-top:30px;
+            padding:30px;
+            background-color: black;
+            color:white;
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+            /* width:100%; */
+            height:auto;
+        }
+        #formStyle>input,#select{
+            width:100%;
+            height:40px;
+            margin:5px;
+            padding:30px;
+            border-radius:30px;
+        }
+
+        #formStyle>#relation{
+            width:100%;
+            height:30px;
+        }
+
+        #formStyle>#submit{
+             background-color:blue;
+             color:white;
+             font-size:35px;
+             padding:40px;
+             border-radius: 30px;
+             /* margin-left:30%;
+             margin-right:30%; */
+        }
+    </style>
+</head>
+<body>
+    <div id="navBar">
+    <div><a href="/">Home</a></div>
+    <div><a href="./contact.html">Contact List</a></div>
+    <div><a href="./favourites.html">Favourites</a></div>
+</div>
+
+
+  <form id="formStyle">
+      <input type="text" required placeholder="Enter name" id="name">
+      <input type="number"  required placeholder="Enter mobile umber" id="mobile" >
+      <select id="relation">
+          <option value="none">NONE</option>
+          <option value="Friends">Friends</option>
+          <option value="Family">Family</option>
+          <option value="Others">Others</option>
+      </select>
+      <input type="submit" value="SUBMIT" id="submit">
+  </form>
+
+
+</body>
+<script>
+    document.querySelector("form").addEventListener("submit",submitted);
+    var contactList;
+    if(localStorage.getItem("contactList")===null){
+        contactList=[];
+    }
+    else{
+        contactList=JSON.parse(localStorage.getItem("contactList"));
+    }
+
+    function submitted(){
+        event.preventDefault();
+      var conOBJ={
+          name:document.querySelector("#name").value,
+          mobileNO:document.querySelector("#mobile").value,
+          relation:document.querySelector("#relation").value,
+      }
+      contactList.push(conOBJ);
+      localStorage.setItem("contactList", JSON.stringify(contactList));
+    }
+</script>
+</html>

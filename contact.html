@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <title>CONTACT LIST</title>
+    <style>
+         *{
+            margin:0;
+            padding:0;
+            box-sizing: border-box;
+        }
+        body{
+            font-family: sans-serif;
+        }
+        #navBar{
+            display:flex;
+            justify-content:space-around;
+            margin-left:200px;
+            margin-right:200px;
+            margin-top:30px;
+            padding:30px;
+            background-color: teal;
+
+        }
+        #navBar>div>a{
+            font-size:30px;
+            color:white;
+          
+            
+        }
+        #navBar>div>a:hover{
+            font-size:40px;
+            color:white;
+            background-color: black;
+        }
+        a{
+            text-decoration: none;
+        }
+
+
+        #table{
+            margin-left:400px;
+            margin-right:400px;
+            margin-top:30px;
+            padding:30px;
+            /* background-color: teal; */
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+           border:1px;
+        }
+        #table+tr{
+            background-color: pink;
+            color:red;
+            font-size:40px;
+        }
+        table,th,td{
+            border:1px solid black;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="navBar">
+        <div><a href="/">Home</a></div>
+        <div><a href="./contact.html">Contact List</a></div>
+        <div><a href="./favourites.html">Favourites</a></div>
+    </div>
+
+    <table id="table">
+        <tr>
+            <th>CONTACT NAME</th>
+            <th>MOBILE NUMBER</th>
+            <th> TYPE </th>
+            <th><a>FAVOURITES</a></th>
+        </tr>
+    </table>
+    
+</body>
+<script>
+    var contactList=JSON.parse(localStorage.getItem("contactList"))||[];
+    console.log(contactList);
+
+    contactList.forEach(function(contact){
+     
+        var row=document.createElement("tr");
+       
+        var td1=document.createElement("td");
+        td1.innerText=contact.name;
+
+        var td2=document.createElement("td");
+        td2.innerText=contact.mobileNO;
+
+        var td3=document.createElement("td");
+        td3.innerText=contact.relation;
+
+        var td4=document.createElement("td");
+        td4.innerText="Add to Fav";
+        td4.setAttribute("onclick", "Add(contact)");
+
+        row.append(td1,td2,td3,td4);
+        document.querySelector("#table").append(row);
+    });
+  function Add(contact){
+       console.log(contact);
+       
+  }
+</script>
+</html>
